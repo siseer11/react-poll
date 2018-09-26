@@ -27,7 +27,7 @@ class CompleteAuthorization extends React.Component {
 		const {displayName : username,avatar} = this.state;
 		let user = firebase.auth().currentUser;
 		const history = this.props.history;
-		console.log(username , this.state.username)
+	
 		user.updateProfile({
 			displayName : username,
 			photoURL : avatar
@@ -41,11 +41,15 @@ class CompleteAuthorization extends React.Component {
 
 		firebase.database().ref(`users/${user.uid}`).update({
 			avatar : avatar,
-			displayName : username
+			displayName : username,
+			completed: true
 		}).then((s)=>console.log('succes'))
-		.catch((err)=>console.log(err))
+		.catch((err)=>console.log(err));
 
-
+		this.props.updateUserInfo({
+			avatar : avatar,
+			userName : username
+		})
 
 	}
 

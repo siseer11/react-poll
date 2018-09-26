@@ -2,6 +2,7 @@ import React from "react";
 import Input from "../components/Input";
 import firebase from '../components/firebase';
 import {withRouter} from 'react-router-dom';
+import { PersonSVG, PasswordSVG } from "../svgs/svgs";
 
 class LogIn extends React.Component {
 	state = {
@@ -44,24 +45,35 @@ class LogIn extends React.Component {
   render() {
 		const {email , password} = this.state;
     return (
-      <form onSubmit={this.formSubmited}>
+			<form 
+				className='full-form-center' 
+				onSubmit={this.formSubmited}
+			>
         <Input
+					placeholder='Email'
           type="email"
           value={email}
           changeHandler={this.inputsChangeHandler}
-          ref={element => (this.emailInput = element)}
+					ref={element => (this.emailInput = element)}
+					icon={<PersonSVG/>}
         >
           Email:
         </Input>
         <Input
+					placeholder='Password'
           type="password"
           value={password}
           changeHandler={this.inputsChangeHandler}
-          ref={element => (this.passwordInput = element)}
+					ref={element => (this.passwordInput = element)}
+					icon={<PasswordSVG/>}
         >
           Password:
         </Input>
-				<input type='submit' value='Log in'/>
+				<input
+				 type='submit' 
+				 value='Log in'
+				 className='main-submit-btn' 
+				 />
       </form>
     );
   }

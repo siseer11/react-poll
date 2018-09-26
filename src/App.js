@@ -10,8 +10,13 @@ class App extends Component {
     userInfo : {},
   }
 
-  setComponentState = (loggedIn , userInfo) => {
-    
+  updateUserInfos = (obj) => { /* obj will have avatar , email , username , userId */
+    this.setState((prevState) => ({ 
+      userInfo : {
+        ...prevState.userInfo,
+        ...obj
+      }
+    }))
   }
 
   componentDidMount(){
@@ -27,7 +32,6 @@ class App extends Component {
             avatar : user.photoURL,
             userId : user.uid,
             email : user.email,
-
           },
         })
       } else {
@@ -44,7 +48,11 @@ class App extends Component {
     const {loggedIn,userInfo} = this.state;
     return (
       <div className="App">
-        <Routes loggedIn={loggedIn} userInfo={this.state.userInfo}/>
+        <Routes 
+          loggedIn={loggedIn} 
+          userInfo={this.state.userInfo}
+          updateUserInfo={this.updateUserInfos}  
+        />
       </div>
     );
   }

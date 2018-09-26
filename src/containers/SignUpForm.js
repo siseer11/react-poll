@@ -2,6 +2,7 @@ import React from "react";
 import Input from '../components/Input';
 import firebase from "../components/firebase";
 import {withRouter} from 'react-router-dom';
+import { EmailSVG, PasswordSVG } from "../svgs/svgs";
 
 class SignUpForm extends React.Component {
 	state = {
@@ -12,7 +13,8 @@ class SignUpForm extends React.Component {
 	setUserData = (userId,email) => {
 		firebase.database().ref('users/' + userId).set({
 			uid: userId,
-			email: email
+			email: email,
+			completed: false
 		}).then((s)=>console.log('succes')).catch((err)=>console.log(err));
 		console.log('done')
 	}
@@ -44,21 +46,29 @@ class SignUpForm extends React.Component {
   render() {
 		const {email : emailValue , password : passwordValue} = this.state;
     return (
-			<form onSubmit={this.submitHandler}>
+			<form className='full-form-center' onSubmit={this.submitHandler}>
 				<Input
+					placeholder='Email'
 					type='email'
 					value={emailValue}
 					changeHandler={this.inputsChangeHandler}
 					ref={(element) => this.emailInput = element}
+					icon={<EmailSVG/>}
 					>Email:</Input>
 				<Input
+					placeholder='Password'
 					type='password'
 					value={passwordValue}
 					changeHandler={this.inputsChangeHandler}
 					ref={(element) => this.passwordInput = element}
+					icon={<PasswordSVG/>}
 					>Password:</Input>
 				
-				<input type='submit' value='Sig-up' />
+				<input 
+					className='main-submit-btn' 
+					type='submit' 
+					value='Sig-up' 
+					/>
 			</form>
 		);
   }

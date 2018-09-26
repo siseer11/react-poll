@@ -8,13 +8,11 @@ export const Home = ({loggedIn , userInfo}) => {
     <div className="home-wrapp">
       {!loggedIn?(
         <React.Fragment>
-          <Link to="/login">LogIn</Link><br/>
-          <Link to="/signUp">SignUp</Link>
+          <NavBar page={'Home'} userInfo={false}/>
         </React.Fragment>
       ):(
         <React.Fragment>
           <NavBar page={'Home'} userInfo={userInfo}/>
-          <Link to="/logOut">logOut</Link>
         </React.Fragment>
       )}
 

@@ -1,0 +1,2 @@
+Checker if the profile is completed if not redirect to 
+the page with the sigup/compete

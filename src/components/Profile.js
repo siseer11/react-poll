@@ -1,23 +1,22 @@
-import React from "react";
+import React from 'react';
+import {PropTypes} from 'prop-types';
 
-import firebase from './firebase';
+export const Profile = ({userAvatar , displayName , userEmail}) => (
+  <div className='profile'>
+    <div className='profile-avatar' style={{backgroundImage : `url(${userAvatar})` , width: 200 ,height : 200 , backgroundSize:'cover'}}/>
+    <div className='user-info'>
+      <p>Username : {displayName}</p>
+      <p>Email : {userEmail}</p>
+    </div>
+  </div>
+)
 
-export default class Profile extends React.Component{
-	
-	componentDidMount(){
-		firebase.database().ref(`users/${this.props.match.params.uid}`)
-		.once('value')
-		.then((snap)=>console.log(snap))
-		.catch((error) => console.log(error))
-		
-	}
+Profile.propTypes = {
+  userAvatar : PropTypes.string,
+  displayName : PropTypes.string.isRequired,
+  userEmail : PropTypes.string.isRequired,
+}
 
-	render(){
-		return(
-			<div className="profile-wrapper">
-				UserId: {this.props.match.params.uid}
-			</div>
-		)
-	}
-
+Profile.defaultProps = {
+  userAvatar : 'https://vignette.wikia.nocookie.net/powerlisting/images/2/26/Unknown_Character.png/revision/latest?cb=20161025113858',
 }

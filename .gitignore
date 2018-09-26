@@ -3,14 +3,14 @@
 # dependencies
 /node_modules
 
+# firebase
+/src/components/firebase.js
+
 # testing
 /coverage
 
 # production
 /build
-
-# firebase
-/src/components/firebase
 
 # misc
 .DS_Store

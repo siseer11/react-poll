@@ -2,14 +2,21 @@ import React from "react";
 
 export default class Input extends React.Component {
   render() {
-    const { children, changeHandler, inputValue, type } = this.props;
+    const { changeHandler, inputValue, type, placeholder, icon , focusHandler} = this.props;
     return (
-      <label>
-        {children}
-				<input 
+      <label className={icon?'input-icon-left':'input-text'}>
+        {icon}
+        <input 
+          onFocus={focusHandler}
+          className={icon?'main-text-input':'input-text-underline'}
 					ref='input'
-					type={type} onChange={changeHandler} value={inputValue} />
+          type={type} 
+          onChange={changeHandler} 
+          value={inputValue}
+          placeholder={placeholder}
+        />
       </label>
     );
   }
 }
+
