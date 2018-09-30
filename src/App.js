@@ -9,7 +9,7 @@ class App extends Component {
     loggedIn : false,
     userInfo : {},
   }
-
+  
   updateUserInfos = (obj) => { /* obj will have avatar , email , username , userId */
     this.setState((prevState) => ({ 
       userInfo : {

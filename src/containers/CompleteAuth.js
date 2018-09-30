@@ -2,6 +2,8 @@ import React from "react";
 import firebase from '../components/firebase';
 import Input from '../components/Input';
 import {withRouter} from 'react-router-dom';
+import {UserNameSVG} from '../svgs/svgs';
+import {AvatarSVG} from '../svgs/svgs';
 
 class CompleteAuthorization extends React.Component {
 	state = {
@@ -57,23 +59,34 @@ class CompleteAuthorization extends React.Component {
   render() {
 		const {username,avatar} = this.state;
     return (
-			<form onSubmit={this.formSubmited}>
+			<form 
+				className='full-form-center' 
+				onSubmit={this.formSubmited}
+			>
 				<Input
 					type='text'
 					value={username}
 					changeHandler={this.inputsChangeHandler}
 					ref={(element) => this.usernameInput = element}
+					placeholder='Username'
+					icon={<UserNameSVG />}
 					>Username:</Input>
 				<Input
 					type='text'
 					value={avatar}
 					changeHandler={this.inputsChangeHandler}
 					ref={(element) => this.avatarInput = element}
+					placeholder='Avatar (url)'
+					icon={<AvatarSVG />}
 					>Avatar:</Input>
-				<input type='submit' value='Complete' />
+				<input 
+					className='main-submit-btn' 
+					type='submit' 
+					value='Complete' 
+				/>
 			</form>
 		);
   }
 }
-
+				 
 export const CompleteAuth = withRouter(CompleteAuthorization)

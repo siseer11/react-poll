@@ -4,6 +4,9 @@ import {PollSVG} from '../svgs/svgs';
 
 const UserOn = ({infos}) => (
 	<React.Fragment>
+		<Link to={'polls'} >
+			<p>polls</p>
+		</Link>
 		<Link to={'create-poll'} >
 			<p>create</p>
 		</Link>

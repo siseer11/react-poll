@@ -8,6 +8,8 @@ import {LogOutRouted} from '../containers/LogOut';
 import ProfilePage from '../containers/ProfilePage'
 import {Profiles} from '../components/Profiles';
 import CreatePollForm from '../containers/CreatePollForm';
+import Polls from '../containers/Polls';
+import PollPage from '../containers/PollPage'
 
 export default ({loggedIn , userInfo , updateUserInfo}) =>
 	<BrowserRouter>
@@ -18,10 +20,10 @@ export default ({loggedIn , userInfo , updateUserInfo}) =>
 			<Route exact path='/logOut' render={() => <LogOutRouted  loggedIn={loggedIn} userInfo={userInfo}/>} />
 			<Route exact path='/signUp/complete' render={() => <CompleteAuth updateUserInfo={updateUserInfo}/>} />
 			<Route exact path='/profile' component={Profiles}/>
+			<Route exact path='/polls' component={Polls}/>
+			<Route exact path='/poll/:pollid' render={(props)=><PollPage loggedIn={loggedIn} userInfo={userInfo} {...props}/>}/>
 			<Route exact path='/create-poll' render={()=><CreatePollForm userInfo={userInfo}/>}/>
 			<Route exact path='/profile/:uid' render={(props)=><ProfilePage loggedUserInfo={userInfo} {...props}/>}/>
 			<Redirect to='/' />
 		</Switch>
 	</BrowserRouter>
-
-
